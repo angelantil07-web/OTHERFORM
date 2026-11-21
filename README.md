@@ -55,6 +55,7 @@ OTHERFORM/
 │       └── checkout.png
 │
 └── README.md
+```
 
 ## How to Run
 
@@ -80,20 +81,25 @@ The checkout process simulates order placement. No actual payments are processed
 ## Screenshots
 
 ### Homepage
+
 ![Homepage Hero](assets/screenshots/homepage-hero.png)
 
 ![Homepage Collection](assets/screenshots/homepage-collection.png)
 
 ### Shop
+
 ![Shop Page](assets/screenshots/shop.png)
 
 ### Product Details
+
 ![Product Page](assets/screenshots/product.png)
 
 ### Shopping Cart
+
 ![Cart Page](assets/screenshots/cart.png)
 
 ### Checkout
+
 ![Checkout Page](assets/screenshots/checkout.png)
 
 ---
