@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP — OTHERFORM</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">OTHERFORM</a>
+
+            <div class="nav-links">
+                <a href="shop.html">SHOP</a>
+                <a href="index.html#about">ABOUT</a>
+                <a href="cart.html">CART (0)</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="shop-page">
+
+        <section class="shop-heading">
+            <p class="section-label">OTHERFORM — COLLECTION 001</p>
+            <h1>THE COLLECTION.</h1>
+            <p class="shop-description">
+                Considered objects for everyday life.
+                A selection of accessories, designed to stay.
+            </p>
+        </section>
+
+        <section class="shop-catalogue">
+
+            <div class="shop-toolbar">
+                <p>ALL PRODUCTS <span>— 09 ITEMS</span></p>
+                <p>2026 / COLLECTION 001</p>
+            </div>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <a href="product.html?item=arc" class="shop-product-link">
+                        <div class="product-image">
+                            <img src="assets/images/sunglasses.jpg"
+                                 alt="ARC black sunglasses">
+                            <span>01 / EYEWEAR</span>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <h3>ARC SUNGLASSES</h3>
+                        <p>₹1,899</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <a href="product.html?item=form" class="shop-product-link">
+                        <div class="product-image">
+                            <img src="assets/images/shoulder-bag.png"
+                                 alt="FORM black shoulder bag">
+                            <span>02 / BAGS</span>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <h3>FORM SHOULDER BAG</h3>
+                        <p>₹3,499</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <a href="product.html?item=mono" class="shop-product-link">
+                        <div class="product-image">
+                            <img src="assets/images/cardholder.png"
+                                 alt="MONO leather cardholder">
+                            <span>03 / OBJECTS</span>
+                        </div>
+                    </a>
+                    <div class="product-info">
+                        <h3>MONO CARDHOLDER</h3>
+                        <p>₹999</p>
+                    </div>
+                </div>
+
+
+<!-- PRODUCT 04 -->
+<div class="product-card">
+    <a href="product.html?item=frame" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/frame.png" alt="FRAME sunglasses">
+            <span>04 / EYEWEAR</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>FRAME SUNGLASSES</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+<!-- PRODUCT 05 -->
+<div class="product-card">
+    <a href="product.html?item=offset" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/offset.png" alt="OFFSET shades">
+            <span>05 / EYEWEAR</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>OFFSET SHADES</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+<!-- PRODUCT 06 -->
+<div class="product-card">
+    <a href="product.html?item=carry" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/carry.png" alt="CARRY tote">
+            <span>06 / BAGS</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>CARRY TOTE</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+<!-- PRODUCT 07 -->
+<div class="product-card">
+    <a href="product.html?item=sling" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/sling.png" alt="SLING crossbody bag">
+            <span>07 / BAGS</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>SLING CROSSBODY</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+<!-- PRODUCT 08 -->
+<div class="product-card">
+    <a href="product.html?item=edge" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/edge.png" alt="EDGE wallet">
+            <span>08 / OBJECTS</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>EDGE WALLET</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+<!-- PRODUCT 09 -->
+<div class="product-card">
+    <a href="product.html?item=object" class="shop-product-link">
+        <div class="product-image">
+            <img src="assets/images/object.png" alt="OBJECT watch">
+            <span>09 / OBJECTS</span>
+        </div>
+    </a>
+    <div class="product-info">
+        <h3>OBJECT WATCH</h3>
+        <p>PRICE TO BE ADDED</p>
+    </div>
+</div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>OTHERFORM © 2026</p>
+        <p>OBJECTS, RECONSIDERED.</p>
+    </footer>
+
+<script>
+function updateCartCount() {
+
+    let cart = JSON.parse(
+        localStorage.getItem("otherform-cart") || "[]"
+    );
+
+    let totalItems = cart.reduce(function(total, item) {
+        return total + item.quantity;
+    }, 0);
+
+    let cartLink = document.querySelector('a[href="cart.html"]');
+
+    if (cartLink) {
+        cartLink.textContent = "CART (" + totalItems + ")";
+    }
+}
+
+updateCartCount();
+</script>
+
+</body>
+</html>

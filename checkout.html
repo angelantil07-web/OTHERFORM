@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHECKOUT — OTHERFORM</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">OTHERFORM</a>
+
+            <div class="nav-links">
+                <a href="shop.html">SHOP</a>
+                <a href="index.html#about">ABOUT</a>
+                <a href="cart.html">CART (0)</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="checkout-page">
+
+        <div class="checkout-heading">
+            <p class="section-label">OTHERFORM — COLLECTION 001</p>
+            <h1>CHECKOUT.</h1>
+            <p>Almost yours. Complete your details below.</p>
+        </div>
+
+        <div class="checkout-layout">
+
+            <!-- DELIVERY DETAILS -->
+
+            <section class="checkout-form-section">
+
+                <h2>01 / DELIVERY DETAILS</h2>
+
+                <form id="checkout-form">
+
+                    <div class="checkout-field">
+                        <label for="full-name">FULL NAME</label>
+                        <input type="text" id="full-name"
+                               placeholder="Your name" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="email">EMAIL ADDRESS</label>
+                        <input type="email" id="email"
+                               placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="phone">PHONE NUMBER</label>
+                        <input type="tel" id="phone"
+                               placeholder="Your phone number" required>
+                    </div>
+
+                    <div class="checkout-field">
+                        <label for="address">DELIVERY ADDRESS</label>
+                        <textarea id="address"
+                                  placeholder="House number, street, area"
+                                  required></textarea>
+                    </div>
+
+                    <div class="checkout-row">
+
+                        <div class="checkout-field">
+                            <label for="city">CITY</label>
+                            <input type="text" id="city"
+                                   placeholder="City" required>
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="pincode">PINCODE</label>
+                            <input type="text" id="pincode"
+                                   placeholder="6-digit pincode"
+                                   pattern="[0-9]{6}" required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="place-order-button">
+                        PLACE ORDER →
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <section class="checkout-summary">
+
+                <h2>02 / YOUR ORDER</h2>
+
+                <div id="checkout-items"></div>
+
+                <div class="checkout-total-row">
+                    <span>SUBTOTAL</span>
+                    <span id="checkout-subtotal">₹0</span>
+                </div>
+
+                <div class="checkout-total-row">
+                    <span>SHIPPING</span>
+                    <span>COMPLIMENTARY</span>
+                </div>
+
+                <div class="checkout-grand-total">
+                    <span>TOTAL</span>
+                    <span id="checkout-total">₹0</span>
+                </div>
+
+                <a href="cart.html" class="edit-cart-link">
+                    ← EDIT YOUR CART
+                </a>
+
+            </section>
+
+        </div>
+
+
+        <!-- EMPTY CART MESSAGE -->
+
+        <div id="checkout-empty" style="display: none;">
+            <h2>YOUR CART IS EMPTY.</h2>
+            <a href="shop.html">EXPLORE THE COLLECTION →</a>
+        </div>
+
+
+        <!-- ORDER CONFIRMATION -->
+
+        <div id="order-confirmation" style="display: none;">
+
+            <p class="section-label">OTHERFORM — ORDER CONFIRMED</p>
+
+            <h1>CONSIDER IT YOURS.</h1>
+
+            <p>
+                Thank you for choosing OTHERFORM.
+                Your order has been successfully placed.
+            </p>
+
+            <p id="order-customer"></p>
+
+            <p id="order-number"></p>
+
+            <a href="shop.html" class="shop-button">
+                CONTINUE EXPLORING ↗
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>OTHERFORM © 2026</p>
+        <p>OBJECTS, RECONSIDERED.</p>
+    </footer>
+
+
+    <script>
+
+    const checkoutProducts = {
+
+        arc: {
+            name: "ARC SUNGLASSES",
+            price: 1899,
+            image: "assets/images/sunglasses.jpg"
+        },
+
+        form: {
+            name: "FORM SHOULDER BAG",
+            price: 3499,
+            image: "assets/images/shoulder-bag.png"
+        },
+
+        mono: {
+            name: "MONO CARDHOLDER",
+            price: 999,
+            image: "assets/images/cardholder.png"
+        },
+
+        frame: {
+            name: "FRAME SUNGLASSES",
+            price: 2299,
+            image: "assets/images/frame.png"
+        },
+
+        offset: {
+            name: "OFFSET SHADES",
+            price: 2499,
+            image: "assets/images/offset.png"
+        },
+
+        carry: {
+            name: "CARRY TOTE",
+            price: 2499,
+            image: "assets/images/carry.png"
+        },
+
+        sling: {
+            name: "SLING CROSSBODY",
+            price: 3299,
+            image: "assets/images/sling.png"
+        },
+
+        edge: {
+            name: "EDGE WALLET",
+            price: 1299,
+            image: "assets/images/edge.png"
+        },
+
+        object: {
+            name: "OBJECT WATCH",
+            price: 4999,
+            image: "assets/images/object.png"
+        }
+
+    };
+
+
+    let cart = JSON.parse(
+        localStorage.getItem("otherform-cart") || "[]"
+    );
+
+    const checkoutItems = document.getElementById("checkout-items");
+    const checkoutEmpty = document.getElementById("checkout-empty");
+    const checkoutLayout = document.querySelector(".checkout-layout");
+
+    let subtotal = 0;
+
+
+    function updateCartCount() {
+
+        let totalItems = cart.reduce(function(total, item) {
+            return total + item.quantity;
+        }, 0);
+
+        const cartLink = document.querySelector(
+            'a[href="cart.html"]'
+        );
+
+        if (cartLink) {
+            cartLink.textContent = "CART (" + totalItems + ")";
+        }
+
+    }
+
+
+    function displayCheckout() {
+
+        checkoutItems.innerHTML = "";
+        subtotal = 0;
+
+        if (cart.length === 0) {
+
+            checkoutLayout.style.display = "none";
+            checkoutEmpty.style.display = "block";
+
+            return;
+        }
+
+        checkoutLayout.style.display = "grid";
+        checkoutEmpty.style.display = "none";
+
+        cart.forEach(function(item) {
+
+            const product = checkoutProducts[item.id];
+
+            if (!product) return;
+
+            const itemTotal = product.price * item.quantity;
+
+            subtotal += itemTotal;
+
+            const itemElement = document.createElement("div");
+
+            itemElement.className = "checkout-item";
+
+            itemElement.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+
+                <div class="checkout-item-info">
+                    <h3>${product.name}</h3>
+                    <p>QUANTITY: ${item.quantity}</p>
+                </div>
+
+                <span>₹${itemTotal.toLocaleString("en-IN")}</span>
+            `;
+
+            checkoutItems.appendChild(itemElement);
+
+        });
+
+        document.getElementById("checkout-subtotal").textContent =
+            "₹" + subtotal.toLocaleString("en-IN");
+
+        document.getElementById("checkout-total").textContent =
+            "₹" + subtotal.toLocaleString("en-IN");
+
+    }
+
+
+    document.getElementById("checkout-form").addEventListener(
+        "submit", function(event) {
+
+            event.preventDefault();
+
+            if (cart.length === 0) return;
+
+            const customerName =
+                document.getElementById("full-name").value;
+
+            const orderNumber =
+                "OF-" + Date.now().toString().slice(-8);
+
+            document.getElementById("order-customer").textContent =
+                "ORDER FOR: " + customerName;
+
+            document.getElementById("order-number").textContent =
+                "ORDER REFERENCE: " + orderNumber;
+
+            checkoutLayout.style.display = "none";
+
+            document.getElementById("order-confirmation").style.display =
+                "block";
+
+            localStorage.removeItem("otherform-cart");
+
+            cart = [];
+
+            updateCartCount();
+
+        }
+    );
+
+
+    displayCheckout();
+    updateCartCount();
+
+    </script>
+
+</body>
+</html>

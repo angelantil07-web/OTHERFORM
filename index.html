@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTHERFORM — Objects for Everyday Use</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">OTHERFORM</a>
+
+            <div class="nav-links">
+                <a href="shop.html">SHOP</a>
+                <a href="#about">ABOUT</a>
+                <a href="cart.html">CART (0)</a>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <main>
+
+        
+        <section class="hero">
+
+            <div class="hero-background-text">
+                OTHERFORM
+            </div>
+
+            <div class="hero-top-label">
+             <span>OBJECTS FOR EVERYDAY USE</span>
+                <span>COLLECTION 001 / 2026</span>
+            </div>
+
+         <div class="hero-product">
+             <img src="assets/images/hero-sunglasses.png"
+              alt="Sculptural sunglasses from OTHERFORM">
+        </div>
+
+         <div class="hero-bottom">
+
+             <div>
+                  <p class="hero-small-label">A DIFFERENT PERSPECTIVE</p>
+                 <h1>FORM<br>FOLLOWS<br>FEELING.</h1>
+              </div>
+
+             <div class="hero-right">
+                 <p>
+                     Objects that challenge the ordinary.
+                     Designed with intention, made for everyday life.
+                 </p>
+
+                 <a href="shop.html" class="shop-button">
+                      EXPLORE COLLECTION ↗
+                  </a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+<!-- Collection Preview -->
+        <section class="collection-preview">
+
+         <div class="collection-heading">
+          <div>
+                 <p class="section-label">THE SELECTION — 001</p>
+                <h2>Objects of interest.</h2>
+            </div>
+
+              <a href="shop.html" class="view-all">VIEW ALL PRODUCTS ↗</a>
+         </div>
+
+         
+<div class="product-grid">
+
+    <a href="product.html?item=arc" class="product-card">
+        <div class="product-image">
+            <img src="assets/images/sunglasses.jpg" alt="ARC black sunglasses">
+            <span>01 / EYEWEAR</span>
+        </div>
+    
+        <div class="product-info">
+            <h3>ARC SUNGLASSES</h3>
+            <p>₹1,899</p>
+        </div>
+    </a>
+
+    <a href="product.html?item=form" class="product-card">
+        <div class="product-image">
+            <img src="assets/images/shoulder-bag.png" alt="FORM black shoulder bag">
+            <span>02 / BAGS</span>
+        </div>
+        <div class="product-info">
+            <h3>FORM SHOULDER BAG</h3>
+            <p>₹3,499</p>
+        </div>
+    </a>
+
+    <a href="product.html?item=mono" class="product-card">
+        <div class="product-image">
+            <img src="assets/images/cardholder.png" alt="MONO leather cardholder">
+            <span>03 / OBJECTS</span>
+        </div>
+        <div class="product-info">
+            <h3>MONO CARDHOLDER</h3>
+            <p>₹999</p>
+        </div>
+    </a>
+
+</div>
+
+
+<div class="collection-footer">
+    <p>THOUGHTFULLY SELECTED. MADE TO BE KEPT.</p>
+    <a href="shop.html">DISCOVER THE FULL COLLECTION ↗</a>
+</div>
+
+
+     </section>
+
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="about">
+        <p>OTHERFORM © 2026</p>
+        <p>OBJECTS, RECONSIDERED.</p>
+    </footer>
+
+<script>
+function updateCartCount() {
+
+    let cart = JSON.parse(
+        localStorage.getItem("otherform-cart") || "[]"
+    );
+
+    let totalItems = cart.reduce(function(total, item) {
+        return total + item.quantity;
+    }, 0);
+
+    let cartLink = document.querySelector('a[href="cart.html"]');
+
+    if (cartLink) {
+        cartLink.textContent = "CART (" + totalItems + ")";
+    }
+}
+
+updateCartCount();
+</script>
+
+<script>
+function updateCartCount() {
+
+    let cart = JSON.parse(
+        localStorage.getItem("otherform-cart") || "[]"
+    );
+
+    let totalItems = cart.reduce(function(total, item) {
+        return total + item.quantity;
+    }, 0);
+
+    let cartLink = document.querySelector('a[href="cart.html"]');
+
+    if (cartLink) {
+        cartLink.textContent = "CART (" + totalItems + ")";
+    }
+}
+
+updateCartCount();
+</script>
+
+</body>
+
+</html>
