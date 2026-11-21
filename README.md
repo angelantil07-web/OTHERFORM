@@ -44,9 +44,17 @@ OTHERFORM/
 │
 ├── js/
 │
-└── assets/
-    └── images/
-```
+├── assets/
+│   ├── images/
+│   └── screenshots/
+│       ├── homepage-hero.png
+│       ├── homepage-collection.png
+│       ├── shop.png
+│       ├── product.png
+│       ├── cart.png
+│       └── checkout.png
+│
+└── README.md
 
 ## How to Run
 
